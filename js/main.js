@@ -71,6 +71,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   })();
 
+  /* Channels item open */
+  (() => {
+    let channels_items = document.querySelectorAll('.channels-col__item');
+    let item_active_class = '--channels-item-active';
+
+    function close_all_items() {
+      for (let i=0; i < channels_items.length; i++) {
+        channels_items[i].classList.remove(item_active_class);
+      }
+    }
+
+    for (let i=0; i < channels_items.length; i++) {
+      channels_items[i].addEventListener('click', () => {
+        if (channels_items[i].classList.contains(item_active_class)) {
+          channels_items[i].classList.remove(item_active_class);
+          return false;
+        } else {
+          close_all_items();
+          channels_items[i].classList.add(item_active_class);
+          setTimeout(() => {if(channels_items[i].classList.contains(item_active_class)) {channels_items[i].classList.remove(item_active_class);}}, 4500)
+        }
+      })
+    }
+  })();
+
   /* Anchor smooth scroll */
   (() => {
     WebT.elements.scroll_links.forEach(anchor => {
